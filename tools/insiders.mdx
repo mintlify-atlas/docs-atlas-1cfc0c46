@@ -3,13 +3,13 @@ title: Insiders & ownership
 description: Access fund ownership, institutional holders, insider transactions, and net purchase activity for any publicly traded stock.
 ---
 
-The insiders and ownership tools give you a full picture of who owns a stock and what they are doing with their position. You can query ownership by holder type — funds, individuals, or institutions — get a high-level breakdown of major holders, track net buying and selling trends, and drill into individual insider transactions.
-
 <Note>
   All insiders and ownership tools require a valid Axion API key. Include it in your MCP server configuration before use.
 </Note>
 
-### insiders_funds
+The insiders and ownership tools give you a full picture of who owns a stock and what they are doing with their position. You can query ownership by holder type — funds, individuals, or institutions — get a high-level breakdown of major holders, track net buying and selling trends, and drill into individual insider transactions.
+
+### `insiders_funds`
 
 Returns fund ownership data for a ticker, including mutual funds and ETFs that hold the stock.
 
@@ -21,7 +21,7 @@ Returns fund ownership data for a ticker, including mutual funds and ETFs that h
 
 ---
 
-### insiders_individuals
+### `insiders_individuals`
 
 Returns named individual insider holders — typically executives, directors, and other officers — for a ticker.
 
@@ -33,7 +33,7 @@ Returns named individual insider holders — typically executives, directors, an
 
 ---
 
-### insiders_institutions
+### `insiders_institutions`
 
 Returns institutional ownership data, including pension funds, hedge funds, and asset managers that hold a reportable position in the stock.
 
@@ -45,7 +45,7 @@ Returns institutional ownership data, including pension funds, hedge funds, and 
 
 ---
 
-### insiders_ownership
+### `insiders_ownership`
 
 Returns a major holders summary — a high-level breakdown of what percentage of shares outstanding is held by insiders, institutions, and the public float.
 
@@ -57,7 +57,7 @@ Returns a major holders summary — a high-level breakdown of what percentage of
 
 ---
 
-### insiders_activity
+### `insiders_activity`
 
 Returns net share purchase activity, showing aggregate buying and selling trends over recent reporting periods. Use this to spot unusual accumulation or distribution before looking at individual transactions.
 
@@ -69,7 +69,7 @@ Returns net share purchase activity, showing aggregate buying and selling trends
 
 ---
 
-### insiders_transactions
+### `insiders_transactions`
 
 Returns individual insider buy and sell transactions, including the reporting person, transaction date, share count, and price.
 

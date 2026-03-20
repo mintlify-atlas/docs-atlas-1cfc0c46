@@ -13,7 +13,7 @@ The credit tools expose S&P credit rating data for public and private organizati
   **Two-step workflow:** Run `credit_search` first with the organization's name to obtain its ID, then pass that ID to `credit_ratings` to get the full ratings history. Do not skip the search step — organization IDs are not the same as stock tickers.
 </Tip>
 
-### credit_search
+### `credit_search`
 
 Searches the S&P credit database for organizations matching the provided name. Returns a list of matching entities with their organization IDs. Use the returned ID as input to `credit_ratings`.
 
@@ -25,7 +25,7 @@ Searches the S&P credit database for organizations matching the provided name. R
 
 ---
 
-### credit_ratings
+### `credit_ratings`
 
 Returns the S&P credit ratings for a specific organization, including long-term and short-term ratings and rating history. Requires an organization ID obtained from `credit_search`.
 

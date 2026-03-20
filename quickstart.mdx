@@ -15,17 +15,13 @@ This guide walks you through installing the Axion MCP Server and connecting it t
   <Step title="Install the package">
     Install `@axionquant/mcp` from npm. You need Node.js v18 or later.
 
-    <CodeGroup>
-
-    ```bash npm
+    ```bash
     npm install @axionquant/mcp
     ```
 
-    ```bash npx (no install)
-    npx @axionquant/mcp
-    ```
-
-    </CodeGroup>
+    <Note>
+      Claude Desktop requires an absolute path to the package entry point. Install the package locally (not globally) so you can reference its exact path in the next step.
+    </Note>
   </Step>
 
   <Step title="Find the installed path">
