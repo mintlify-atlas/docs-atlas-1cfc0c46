@@ -1,0 +1,116 @@
+---
+title: Troubleshooting
+description: Solutions to common issues with the Axion MCP Server.
+---
+
+If the server is not working as expected, the sections below cover the most common problems and how to fix them.
+
+<AccordionGroup>
+  <Accordion title="Tools not appearing in the LLM client">
+    **Symptoms:** You open Claude Desktop (or another MCP client) and the Axion tools are not listed in the available tool panel.
+
+    **Likely cause:** The server failed to start, or the configuration file was not saved correctly before the client launched.
+
+    **Solution steps:**
+
+    1. Confirm you saved the configuration file after making changes.
+    2. Verify the `args` path is an **absolute path** and points to an existing file. Run the following to check:
+       ```bash
+       node /absolute/path/to/node_modules/@axionquant/mcp/index.js
+       ```
+       If the server starts without errors, the path is correct.
+    3. Check the configuration file for JSON syntax errors (missing commas, unclosed braces, etc.).
+    4. **Restart the client completely** — quit and reopen it, not just refresh. On macOS, use **Quit** from the menu bar rather than closing the window.
+    5. If tools still do not appear, check the client's server logs (see [How to view server logs](#how-to-view-server-logs) below).
+  </Accordion>
+
+  <Accordion title="API requests failing (401, 403, or connection errors)">
+    **Symptoms:** Claude returns an error like "API request failed", "401 Unauthorized", or "connection refused" when you ask a financial question.
+
+    **Likely cause:** The `API_KEY` environment variable is missing, incorrect, or the key has been revoked.
+
+    **Solution steps:**
+
+    1. Open your MCP client configuration file and confirm the `API_KEY` value is set and matches the key shown in your [API keys dashboard](https://axionquant.com/dashboard/api-keys).
+    2. Make sure there are no extra spaces or quotes around the key value.
+    3. Check that the key has not been revoked or expired in the dashboard.
+    4. If you recently rotated your key, update the configuration file and restart the client.
+    5. Review the server logs for the exact error message — a `401` confirms an authentication problem, while a connection error may indicate a network or firewall issue.
+
+    ```json
+    "env": {
+      "API_KEY": "axq_your_key_here"
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Server won't start">
+    **Symptoms:** The MCP client reports that it could not start the Axion server process, or the tools never load even after restarting.
+
+    **Likely cause:** Node.js is not installed, the version is too old, or the package is not installed.
+
+    **Solution steps:**
+
+    1. Confirm Node.js v18 or later is installed:
+       ```bash
+       node --version
+       ```
+       If this returns an error or a version below `v18`, install or upgrade Node.js from [nodejs.org](https://nodejs.org).
+    2. Confirm the package is installed by checking that `index.js` exists at the path you specified:
+       ```bash
+       ls /absolute/path/to/node_modules/@axionquant/mcp/index.js
+       ```
+       If the file is missing, run:
+       ```bash
+       npm install @axionquant/mcp
+       ```
+    3. Try starting the server manually to see any startup errors:
+       ```bash
+       API_KEY=your_api_key_here node /absolute/path/to/node_modules/@axionquant/mcp/index.js
+       ```
+    4. On Windows, use the Command Prompt to set the environment variable:
+       ```cmd
+       set API_KEY=your_api_key_here && node C:\path\to\node_modules\@axionquant\mcp\index.js
+       ```
+  </Accordion>
+
+  <Accordion title="How to view server logs">
+    **Symptoms:** Something is wrong but you're not sure what — tools aren't appearing, requests are failing, or behavior is unexpected.
+
+    **Solution steps:**
+
+    Server logs are the fastest way to diagnose any issue. How you access them depends on your client:
+
+    **Claude Desktop:**
+
+    Claude Desktop writes MCP server logs to a file. Open a terminal and tail the log:
+
+    <Tabs>
+      <Tab title="macOS">
+        ```bash
+        tail -f ~/Library/Logs/Claude/mcp-server-axion-financial-data.log
+        ```
+      </Tab>
+      <Tab title="Windows">
+        ```cmd
+        type "%APPDATA%\Claude\Logs\mcp-server-axion-financial-data.log"
+        ```
+      </Tab>
+    </Tabs>
+
+    Look for lines containing `error` or `Error`. Common patterns:
+
+    | Log message | Meaning |
+    |---|---|
+    | `401 Unauthorized` | `API_KEY` is wrong or missing |
+    | `ENOENT` or `MODULE_NOT_FOUND` | The path in `args` is incorrect |
+    | `Error: Cannot find module` | Package is not installed |
+    | No output at all | Server started but is waiting for input (this is normal) |
+
+    **Other clients:** Consult your client's documentation for how to access MCP server process logs.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  If none of the steps above resolve your issue, open a support ticket from your [Axion dashboard](https://axionquant.com/dashboard) and include the relevant log lines.
+</Note>

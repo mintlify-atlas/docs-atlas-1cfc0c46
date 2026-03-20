@@ -1,0 +1,58 @@
+---
+title: Sentiment
+description: Retrieve social media, news, and analyst sentiment scores for any stock ticker.
+---
+
+<Note>
+All Axion MCP Server tools require a valid API key. Include your key in the server configuration before using any tool.
+</Note>
+
+The sentiment tools give you a quantified view of how a stock is being perceived across three distinct signal sources: social media platforms, news articles, and analyst or AI-generated assessments. Use these tools to gauge market mood, identify divergence between sources, or inform trading and research decisions.
+
+---
+
+### `sentiment_all`
+
+Get a combined sentiment score for a ticker that aggregates social media, news, and analyst signals into a single view. Use this tool when you want a broad picture of overall market sentiment without needing to examine each source separately.
+
+<ParamField path="ticker" type="string" required>
+  The stock ticker symbol to analyze. For example, `TSLA` for Tesla or `META` for Meta Platforms.
+</ParamField>
+
+**Example query:** "What is the overall market sentiment for TSLA right now?"
+
+---
+
+### `sentiment_social`
+
+Get sentiment derived from social media activity for a specific ticker. This signal reflects retail investor and public discussion on platforms such as Reddit, Twitter/X, and StockTwits.
+
+<ParamField path="ticker" type="string" required>
+  The stock ticker symbol to analyze. For example, `GME` for GameStop or `AMC` for AMC Entertainment.
+</ParamField>
+
+**Example query:** "How is GME being discussed on social media today?"
+
+---
+
+### `sentiment_news`
+
+Get sentiment derived from news article coverage for a specific ticker. This signal captures the tone of published reporting — positive, negative, or neutral — across financial and general media sources.
+
+<ParamField path="ticker" type="string" required>
+  The stock ticker symbol to analyze. For example, `AAPL` for Apple or `MSFT` for Microsoft.
+</ParamField>
+
+**Example query:** "What is the news sentiment for Microsoft (MSFT) this week?"
+
+---
+
+### `sentiment_analyst`
+
+Get analyst and AI-generated sentiment for a specific ticker. This signal reflects the views of professional analysts and model-based assessments, which tend to be more structured and forward-looking than social or news signals.
+
+<ParamField path="ticker" type="string" required>
+  The stock ticker symbol to analyze. For example, `GOOGL` for Alphabet or `AMZN` for Amazon.
+</ParamField>
+
+**Example query:** "What do analysts think about GOOGL's near-term outlook?"

@@ -1,0 +1,66 @@
+---
+title: Forex
+description: Browse foreign exchange pairs, get live quotes, and retrieve historical price data for currency pairs.
+---
+
+<Note>
+All Axion MCP Server tools require a valid API key. Include your key in the server configuration before using any tool.
+</Note>
+
+The forex tools provide access to foreign exchange market data. You can list currency pair tickers filtered by country or exchange, retrieve current rate information for any pair, and pull historical OHLCV series at daily, weekly, or monthly granularity.
+
+### `forex_tickers`
+
+List available forex tickers, optionally filtered by country code or exchange. Use this tool to find the correct ticker symbol for a currency pair before querying quotes or history.
+
+<ParamField query="country" type="string">
+  Filter by country code. For example, `US` for United States pairs or `AE` for United Arab Emirates pairs.
+</ParamField>
+
+<ParamField query="exchange" type="string">
+  Filter by exchange. For example, `IDC` to return only tickers from that data source.
+</ParamField>
+
+**Example query:** "List all forex pairs available for the US."
+
+**When to use:** Use this tool when you need to identify the exact ticker for a currency pair before fetching a real-time quote or historical data.
+
+---
+
+### `forex_quote`
+
+Get current market details for a forex pair, including the exchange rate and related fields.
+
+<ParamField path="ticker" type="string" required>
+  The forex ticker symbol. For example, `EURUSD` for Euro to US Dollar.
+</ParamField>
+
+**Example query:** "What is the current EUR/USD exchange rate?"
+
+**When to use:** Use this tool when you need the latest rate for a currency pair — for conversion calculations, risk assessment, or market monitoring.
+
+---
+
+### `forex_prices`
+
+Retrieve historical exchange rate data for a forex pair over a specified date range and time frame.
+
+<ParamField path="ticker" type="string" required>
+  The forex ticker symbol. For example, `GBPUSD` for British Pound to US Dollar.
+</ParamField>
+
+<ParamField query="from" type="string">
+  Start date for the price series in `YYYY-MM-DD` format. For example, `2024-01-01`.
+</ParamField>
+
+<ParamField query="to" type="string">
+  End date for the price series in `YYYY-MM-DD` format. For example, `2024-12-31`.
+</ParamField>
+
+<ParamField query="frame" type="string">
+  Time frame for each data point. Common values: `1d` (daily), `1wk` (weekly), `1mo` (monthly).
+</ParamField>
+
+**Example query:** "Show me the weekly EUR/USD rate for all of 2023."
+
+**When to use:** Use this tool when you need a historical rate series for currency analysis, FX hedging research, or macroeconomic comparisons.

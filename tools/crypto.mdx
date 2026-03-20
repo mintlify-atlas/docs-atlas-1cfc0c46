@@ -1,0 +1,62 @@
+---
+title: Crypto
+description: List cryptocurrency tickers, fetch real-time quotes, and retrieve historical price data for digital assets.
+---
+
+<Note>
+All Axion MCP Server tools require a valid API key. Include your key in the server configuration before using any tool.
+</Note>
+
+The crypto tools give you access to cryptocurrency market data. You can list available digital asset tickers, retrieve current price and market information for any supported coin or token, and pull historical OHLCV price series across flexible time frames.
+
+### `crypto_tickers`
+
+List all available cryptocurrency tickers, optionally filtered by market type. Use this tool to discover what symbols are supported before requesting quotes or historical data.
+
+<ParamField query="type" type="string">
+  Filter by market type. For example, `spot` returns only spot market instruments.
+</ParamField>
+
+**Example query:** "What spot cryptocurrency tickers are available?"
+
+**When to use:** Run this tool when you need to find the correct ticker symbol for a digital asset before querying its quote or price history.
+
+---
+
+### `crypto_quote`
+
+Get current market details for a cryptocurrency, including price, volume, and other real-time or delayed fields.
+
+<ParamField path="ticker" type="string" required>
+  The cryptocurrency ticker symbol. For example, `BTC` for Bitcoin or `ETH` for Ethereum.
+</ParamField>
+
+**Example query:** "What is the current price of BTC?"
+
+**When to use:** Use this tool whenever you need a point-in-time snapshot of a cryptocurrency's market data — price, percent change, market cap, or similar metrics.
+
+---
+
+### `crypto_prices`
+
+Retrieve historical price data for a cryptocurrency over a specified date range and time frame. Returns an OHLCV series.
+
+<ParamField path="ticker" type="string" required>
+  The cryptocurrency ticker symbol. For example, `ETH` for Ethereum.
+</ParamField>
+
+<ParamField query="from" type="string">
+  Start date for the price series in `YYYY-MM-DD` format. For example, `2024-01-01`.
+</ParamField>
+
+<ParamField query="to" type="string">
+  End date for the price series in `YYYY-MM-DD` format. For example, `2024-12-31`.
+</ParamField>
+
+<ParamField query="frame" type="string">
+  Time frame for each data point. Common values: `1d` (daily), `1wk` (weekly), `1mo` (monthly).
+</ParamField>
+
+**Example query:** "Show me ETH's daily prices for the last 90 days."
+
+**When to use:** Use this tool when you need a historical price series for charting, volatility analysis, backtesting trading strategies, or comparing cryptocurrency performance over time.

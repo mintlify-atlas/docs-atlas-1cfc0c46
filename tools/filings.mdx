@@ -1,0 +1,98 @@
+---
+title: SEC filings
+description: Retrieve recent SEC filings, fetch specific form types, list available form descriptions, and search filings by year and quarter.
+---
+
+<Note>
+All Axion MCP Server tools require a valid API key. Include your key in the server configuration before using any tool.
+</Note>
+
+The SEC filings tools give you access to documents submitted by public companies to the US Securities and Exchange Commission. You can browse recent filings for a company, target a specific form type, look up what form types exist, or search across all filers for a given reporting period. Common form types include:
+
+- **10-K** — Annual report with full financial statements and business overview
+- **10-Q** — Quarterly report with interim financial statements
+- **8-K** — Current report disclosing material events (earnings, acquisitions, leadership changes)
+- **DEF 14A** — Proxy statement sent to shareholders before annual meetings
+- **4** — Insider trading report filed by officers, directors, and large shareholders
+
+---
+
+### `filings_recent`
+
+Get the most recent SEC filings for a company. Returns a list of filings sorted by date, optionally filtered by form type and limited to a specific count. Use this tool for a quick overview of a company's latest regulatory activity.
+
+<ParamField path="ticker" type="string" required>
+  The stock ticker symbol for the company. For example, `AAPL` for Apple or `JPM` for JPMorgan Chase.
+</ParamField>
+
+<ParamField query="limit" type="integer">
+  The maximum number of filings to return. Useful for narrowing results to the most recent few.
+</ParamField>
+
+<ParamField query="form" type="string">
+  Filter results to a specific form type. For example, `10-K` returns only annual reports, and `8-K` returns only current event disclosures.
+</ParamField>
+
+**Example query:** "Show me the 5 most recent SEC filings for Tesla (TSLA)."
+
+---
+
+### `filings_forms`
+
+Get filings of a specific form type for a company, with optional filters for year, quarter, and result count. Use this tool when you need to review a company's history for a particular filing type — for example, all 10-K annual reports over multiple years.
+
+<ParamField path="ticker" type="string" required>
+  The stock ticker symbol for the company. For example, `MSFT` for Microsoft.
+</ParamField>
+
+<ParamField path="formType" type="string" required>
+  The SEC form type to retrieve. For example, `10-K`, `10-Q`, or `8-K`.
+</ParamField>
+
+<ParamField query="year" type="string">
+  Filter results to a specific filing year. For example, `2024`.
+</ParamField>
+
+<ParamField query="quarter" type="string">
+  Filter results to a specific fiscal quarter. For example, `Q1` or `Q3`.
+</ParamField>
+
+<ParamField query="limit" type="integer">
+  The maximum number of filings to return.
+</ParamField>
+
+**Example query:** "Get all 10-Q filings for NVDA from 2024."
+
+---
+
+### `filings_desc_forms`
+
+List all available SEC form types along with their descriptions. This tool takes no parameters and is useful for discovering what form types exist before using `filings_recent` or `filings_forms` — particularly when you are unsure of the exact form type name or want to explore less common filing types.
+
+This tool takes no parameters.
+
+**Example query:** "What SEC form types are available?"
+
+---
+
+### `filings_search`
+
+Search across all SEC filers for a given year and quarter, with optional filters for form type and ticker. Use this tool when you want to find filings from multiple companies for a specific reporting period — for example, all 10-K filings submitted in Q1 2024.
+
+<ParamField path="year" type="string" required>
+  The filing year to search within. For example, `2024`.
+</ParamField>
+
+<ParamField path="quarter" type="string" required>
+  The filing quarter to search within. For example, `Q1` or `Q4`.
+</ParamField>
+
+<ParamField query="form" type="string">
+  Filter results to a specific form type. For example, `10-K`.
+</ParamField>
+
+<ParamField query="ticker" type="string">
+  Filter results to a specific company ticker. For example, `AMZN` for Amazon.
+</ParamField>
+
+**Example query:** "Find all 10-K filings submitted in Q1 2024."

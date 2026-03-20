@@ -1,0 +1,23 @@
+---
+title: Web traffic
+description: Retrieve website traffic data for public companies to analyze consumer interest trends and competitive positioning.
+---
+
+The web traffic tool gives you visit volume and engagement data for a company's primary web presence. This is useful for analyzing competitive positioning, tracking consumer interest over time, and supporting market share research — particularly for consumer-facing businesses where online traffic correlates with demand.
+
+<Note>
+  The web traffic tool requires a valid Axion API key. Include it in your MCP server configuration before use.
+</Note>
+
+### webtraffic_traffic
+
+Returns website traffic data for the company associated with a stock ticker. The response typically includes monthly visit estimates and trend data.
+
+<ParamField path="ticker" type="string" required>
+  Stock ticker symbol, e.g. `NFLX`.
+</ParamField>
+
+**Example queries:**
+- "How has Netflix's website traffic changed over the past year?"
+- "Compare Amazon's web traffic growth to Walmart's."
+- "Is Shopify gaining or losing web traffic relative to its competitors?"

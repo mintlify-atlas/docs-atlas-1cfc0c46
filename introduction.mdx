@@ -1,0 +1,101 @@
+---
+title: "Axion MCP Server"
+description: "Give your LLM access to real-time and historical financial data via the Model Context Protocol"
+---
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Install the server and connect to Claude Desktop in minutes
+  </Card>
+  <Card title="Get your API key" icon="key" href="/configuration/api-key">
+    Create a free account and generate your API key
+  </Card>
+  <Card title="Tool reference" icon="wrench" href="/tools/stocks">
+    Browse all 60+ available tools by category
+  </Card>
+  <Card title="Example queries" icon="message" href="/guides/example-queries">
+    See real-world natural language queries you can ask
+  </Card>
+</CardGroup>
+
+## What is the Axion MCP Server?
+
+The Axion MCP Server is a [Model Context Protocol](https://modelcontextprotocol.io) server that connects LLMs like Claude to the [Axion financial data API](https://axionquant.com). Once installed, your AI assistant can answer complex financial questions using live and historical data.
+
+```
+LLM (Claude, etc.) <──> MCP Server <──> Axion REST API
+```
+
+The server exposes **60+ tools** across 15 financial data categories — from real-time stock quotes to SEC filings to ESG scores — all accessible through natural language conversation.
+
+## What can you ask?
+
+Once connected, you can ask your LLM questions like:
+
+- *"What are NVIDIA's top institutional holders?"*
+- *"Show me Apple's free cash flow for the last 8 quarters"*
+- *"What SEC filings has Microsoft made this year?"*
+- *"Get Bitcoin's price history for the last 30 days"*
+- *"What's Tesla's ESG score?"*
+- *"Who are the main suppliers for AAPL?"*
+- *"What's the economic calendar for next week?"*
+
+## Available data categories
+
+<CardGroup cols={3}>
+  <Card title="Stocks" icon="chart-line" href="/tools/stocks">
+    Tickers, quotes, and historical prices
+  </Card>
+  <Card title="Crypto" icon="bitcoin" href="/tools/crypto">
+    Cryptocurrency quotes and price history
+  </Card>
+  <Card title="Forex" icon="arrow-right-arrow-left" href="/tools/forex">
+    Foreign exchange pairs and rates
+  </Card>
+  <Card title="Futures" icon="clock" href="/tools/futures">
+    Futures contracts and price data
+  </Card>
+  <Card title="Indices" icon="chart-bar" href="/tools/indices">
+    Market indices and historical data
+  </Card>
+  <Card title="ETFs" icon="layer-group" href="/tools/etfs">
+    Fund info, holdings, and exposure
+  </Card>
+  <Card title="Financials" icon="building-columns" href="/tools/financials">
+    Revenue, cash flow, balance sheet data
+  </Card>
+  <Card title="Earnings" icon="calendar" href="/tools/earnings">
+    Earnings history, trends, and reports
+  </Card>
+  <Card title="Profiles" icon="user" href="/tools/profiles">
+    Company profiles, statistics, and recommendations
+  </Card>
+  <Card title="News" icon="newspaper" href="/tools/news">
+    Market news by ticker, country, or category
+  </Card>
+  <Card title="Sentiment" icon="gauge" href="/tools/sentiment">
+    Social, news, and analyst sentiment
+  </Card>
+  <Card title="Economics" icon="globe" href="/tools/economics">
+    FRED datasets and economic calendar
+  </Card>
+  <Card title="SEC Filings" icon="file-lines" href="/tools/filings">
+    10-K, 8-K, and other SEC form types
+  </Card>
+  <Card title="Insiders" icon="people-group" href="/tools/insiders">
+    Institutional ownership and insider trades
+  </Card>
+  <Card title="ESG & More" icon="leaf" href="/tools/esg">
+    ESG scores, supply chain, credit, web traffic
+  </Card>
+</CardGroup>
+
+## How it works
+
+The Axion MCP Server uses the [stdio transport](https://modelcontextprotocol.io/docs/concepts/transports) from the Model Context Protocol SDK. When your LLM client starts the server process, it communicates over stdin/stdout to discover available tools and invoke them.
+
+Each tool call is translated to a REST request against the Axion API at `https://api.axionquant.com/`, authenticated with your API key via the `Authorization: Bearer` header.
+
+<Note>
+  An API key is required to use the Axion MCP Server. [Get a free API key](https://axionquant.com/dashboard/api-keys) at axionquant.com.
+</Note>

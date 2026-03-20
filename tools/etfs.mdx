@@ -1,0 +1,50 @@
+---
+title: ETFs
+description: Retrieve ETF fund metrics, top holdings, and exposure data to identify which funds hold a specific stock.
+---
+
+<Note>
+All Axion MCP Server tools require a valid API key. Include your key in the server configuration before using any tool.
+</Note>
+
+The ETF tools let you dig into exchange-traded fund data. You can retrieve fund-level information including ratings and key metrics, get a breakdown of an ETF's top holdings with weights and market values, and find all ETFs that hold exposure to a specific underlying stock.
+
+### `etf_fund`
+
+Get fund-level information for an ETF, including performance ratings, expense ratios, assets under management, and other key metrics.
+
+<ParamField path="ticker" type="string" required>
+  The ETF ticker symbol. For example, `SPY` for the SPDR S&P 500 ETF.
+</ParamField>
+
+**Example query:** "What are the key metrics and ratings for SPY?"
+
+**When to use:** Use this tool when you need an overview of an ETF's characteristics — expense ratio, AUM, category ratings, or risk metrics — before deciding whether to include it in an analysis.
+
+---
+
+### `etf_holdings`
+
+Get the top holdings of an ETF, including each holding's weight in the fund, number of shares held, and market value.
+
+<ParamField path="ticker" type="string" required>
+  The ETF ticker symbol. For example, `SPY` for the SPDR S&P 500 ETF.
+</ParamField>
+
+**Example query:** "What are the top holdings of QQQ and their weights?"
+
+**When to use:** Use this tool when you need to understand what a fund owns — for portfolio overlap analysis, sector concentration checks, or due diligence on ETF composition.
+
+---
+
+### `etf_exposure`
+
+Find all ETFs that hold a specific stock, showing each fund's exposure to that ticker.
+
+<ParamField path="ticker" type="string" required>
+  The stock ticker symbol to search for. For example, `AAPL` to find all ETFs that hold Apple Inc.
+</ParamField>
+
+**Example query:** "Which ETFs hold NVDA in their portfolios?"
+
+**When to use:** Use this tool when you want to identify ETF-level exposure to a specific company — useful for understanding how widely held a stock is across passive vehicles or for building ETF-based positions around a single name.

@@ -1,0 +1,58 @@
+---
+title: News
+description: Fetch general headlines, company-specific news, and stories filtered by country or category.
+---
+
+<Note>
+All Axion MCP Server tools require a valid API key. Include your key in the server configuration before using any tool.
+</Note>
+
+The news tools let you retrieve headlines from a broad set of sources — across the entire market, for a specific company, for a particular country, or within a topic category such as technology or health. Use these tools when you need current information to inform analysis, answer questions about recent events, or summarize market-moving stories.
+
+---
+
+### `news_general`
+
+Get the latest general news headlines across all topics and markets. This tool returns a broad feed of top stories and is useful as a starting point when no specific company or topic is known.
+
+This tool takes no parameters.
+
+**Example query:** "What are the top news stories right now?"
+
+---
+
+### `news_ticker`
+
+Get recent news articles specifically about a company identified by its stock ticker. Use this tool when you need to understand what is happening with a particular company — earnings surprises, executive changes, product launches, or regulatory actions.
+
+<ParamField path="ticker" type="string" required>
+  The stock ticker symbol for the company. For example, `NVDA` for NVIDIA or `AMZN` for Amazon.
+</ParamField>
+
+**Example query:** "What is the latest news about Apple (AAPL)?"
+
+---
+
+### `news_country`
+
+Get news stories filtered to a specific country. This is useful when you want regional coverage — for example, political or economic developments in a particular market.
+
+<ParamField path="country" type="string" required>
+  The country name or ISO country code. For example, `germany` or `DE` for Germany, `japan` or `JP` for Japan.
+</ParamField>
+
+**Example query:** "What is the latest news from Brazil?"
+
+---
+
+### `news_category`
+
+Get news articles filtered to a specific topic category. Use this tool when you want stories within a defined domain rather than general headlines.
+
+Common category values: `business`, `technology`, `sports`, `entertainment`, `health`, `science`.
+
+<ParamField path="category" type="string" required>
+  The topic category to filter by. For example, `technology` returns tech industry stories, and `health` returns medical and healthcare news.
+</ParamField>
+
+**Example query:** "Show me the latest technology news."

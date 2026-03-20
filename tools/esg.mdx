@@ -1,0 +1,23 @@
+---
+title: ESG
+description: Retrieve Environmental, Social, and Governance scores for any publicly traded company.
+---
+
+ESG (Environmental, Social, and Governance) scores measure how a company manages its impact on the environment, its relationships with employees, suppliers, and communities, and the quality of its leadership and internal controls. Use this tool for ESG-focused investing screens, sustainability research, and regulatory compliance reporting.
+
+<Note>
+  The ESG tool requires a valid Axion API key. Include it in your MCP server configuration before use.
+</Note>
+
+### esg_data
+
+Returns ESG scores for a specific ticker. The response includes individual Environmental, Social, and Governance component scores as well as an overall combined score.
+
+<ParamField path="ticker" type="string" required>
+  Stock ticker symbol, e.g. `AAPL`.
+</ParamField>
+
+**Example queries:**
+- "What's Tesla's ESG score?"
+- "How does Apple score on environmental criteria?"
+- "Compare the governance scores of MSFT and GOOGL."

@@ -1,0 +1,62 @@
+---
+title: Indices
+description: Explore market indices from exchanges worldwide, get current index values, and retrieve historical performance data.
+---
+
+<Note>
+All Axion MCP Server tools require a valid API key. Include your key in the server configuration before using any tool.
+</Note>
+
+The indices tools give you access to market index data from exchanges around the world. You can list available index tickers filtered by exchange, retrieve the current value and details for any index, and pull historical OHLCV data for trend analysis and benchmarking.
+
+### `indices_tickers`
+
+List available index tickers, optionally filtered by exchange. Use this tool to identify the correct ticker symbol before querying an index quote or price history.
+
+<ParamField query="exchange" type="string">
+  Filter by exchange. For example, `ASX` for Australian Securities Exchange indices or `AMS` for Euronext Amsterdam indices.
+</ParamField>
+
+**Example query:** "What market indices are available on the ASX?"
+
+**When to use:** Use this tool when you need to look up the ticker for a specific index on a given exchange before fetching a quote or historical data.
+
+---
+
+### `indices_quote`
+
+Get current details for a market index, including the current level, change, and related fields.
+
+<ParamField path="ticker" type="string" required>
+  The index ticker symbol. For example, `AXJO` for the ASX 200 or `AEX` for the Amsterdam Exchange Index.
+</ParamField>
+
+**Example query:** "What is the current level of the AEX index?"
+
+**When to use:** Use this tool when you need the latest value of a market index — for benchmarking portfolio performance or tracking broad market conditions.
+
+---
+
+### `indices_prices`
+
+Retrieve historical price data for a market index over a specified date range and time frame.
+
+<ParamField path="ticker" type="string" required>
+  The index ticker symbol. For example, `AXJO` for the ASX 200.
+</ParamField>
+
+<ParamField query="from" type="string">
+  Start date for the price series in `YYYY-MM-DD` format. For example, `2024-01-01`.
+</ParamField>
+
+<ParamField query="to" type="string">
+  End date for the price series in `YYYY-MM-DD` format. For example, `2024-12-31`.
+</ParamField>
+
+<ParamField query="frame" type="string">
+  Time frame for each data point. Common values: `1d` (daily), `1wk` (weekly), `1mo` (monthly).
+</ParamField>
+
+**Example query:** "Show me the monthly performance of the AEX index over the last five years."
+
+**When to use:** Use this tool for long-term benchmark analysis, historical comparisons, or generating performance charts for a market index.

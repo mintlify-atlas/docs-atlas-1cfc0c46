@@ -1,0 +1,44 @@
+---
+title: Supply chain
+description: Map the supply chain relationships for any public company — customers, suppliers, and competitors.
+---
+
+The supply chain tools let you explore a company's commercial ecosystem from three perspectives. **Customers** are companies that buy from the subject company. **Suppliers** are companies that sell inputs or components to the subject company. **Peers** are competitors operating in the same space. Together these tools support competitive analysis, due diligence, and risk research.
+
+<Note>
+  All supply chain tools require a valid Axion API key. Include it in your MCP server configuration before use.
+</Note>
+
+### supply_chain_customers
+
+Returns a list of companies that are known customers of the subject company — i.e., businesses that purchase products or services from it.
+
+<ParamField path="ticker" type="string" required>
+  Stock ticker symbol, e.g. `TSM`.
+</ParamField>
+
+**Example query:** "What companies does TSMC supply chips to?"
+
+---
+
+### supply_chain_suppliers
+
+Returns a list of companies that supply materials, components, or services to the subject company.
+
+<ParamField path="ticker" type="string" required>
+  Stock ticker symbol, e.g. `AAPL`.
+</ParamField>
+
+**Example query:** "Who are the main suppliers for Apple?"
+
+---
+
+### supply_chain_peers
+
+Returns a list of competitors that operate in the same market segment as the subject company.
+
+<ParamField path="ticker" type="string" required>
+  Stock ticker symbol, e.g. `AAPL`.
+</ParamField>
+
+**Example query:** "Who are AAPL's main competitors?"

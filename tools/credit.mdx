@@ -1,0 +1,38 @@
+---
+title: Credit ratings
+description: Search for organizations and retrieve their S&P credit ratings using a two-step lookup workflow.
+---
+
+The credit tools expose S&P credit rating data for public and private organizations. Because credit rating data is indexed by an internal organization ID rather than a stock ticker, you use a two-step workflow: search for the organization by name to get its ID, then retrieve the ratings for that ID.
+
+<Note>
+  All credit tools require a valid Axion API key. Include it in your MCP server configuration before use.
+</Note>
+
+<Tip>
+  **Two-step workflow:** Run `credit_search` first with the organization's name to obtain its ID, then pass that ID to `credit_ratings` to get the full ratings history. Do not skip the search step — organization IDs are not the same as stock tickers.
+</Tip>
+
+### credit_search
+
+Searches the S&P credit database for organizations matching the provided name. Returns a list of matching entities with their organization IDs. Use the returned ID as input to `credit_ratings`.
+
+<ParamField query="query" type="string" required>
+  Organization name to search for, e.g. `Apple Inc`.
+</ParamField>
+
+**Example query:** "Find the S&P organization ID for Microsoft."
+
+---
+
+### credit_ratings
+
+Returns the S&P credit ratings for a specific organization, including long-term and short-term ratings and rating history. Requires an organization ID obtained from `credit_search`.
+
+<ParamField path="id" type="string" required>
+  Organization ID returned by `credit_search`.
+</ParamField>
+
+**Example queries:**
+- "What's Apple's S&P credit rating?"
+- "Show me Microsoft's credit rating history."

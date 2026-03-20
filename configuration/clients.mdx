@@ -1,0 +1,95 @@
+---
+title: Client configuration
+description: Configure the Axion MCP Server in Claude Desktop and other MCP-compatible clients.
+---
+
+The Axion MCP Server communicates over **stdio transport**, which means your MCP client starts the server as a child process and communicates with it through standard input and output. You configure this by pointing your client at the `index.js` entry point and supplying your `API_KEY` as an environment variable.
+
+## Claude Desktop
+
+Claude Desktop reads its MCP server configuration from a JSON file on disk. The file location depends on your operating system.
+
+<Tabs>
+  <Tab title="macOS">
+    **Configuration file:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+
+    Open the file (create it if it doesn't exist) and add the `axion-financial-data` entry to the `mcpServers` object:
+
+    ```json claude_desktop_config.json
+    {
+      "mcpServers": {
+        "axion-financial-data": {
+          "command": "node",
+          "args": ["/absolute/path/to/node_modules/@axionquant/mcp/index.js"],
+          "env": {
+            "API_KEY": "your_api_key_here"
+          }
+        }
+      }
+    }
+    ```
+
+    Replace `/absolute/path/to/node_modules/@axionquant/mcp/index.js` with the actual absolute path on your machine. For example:
+
+    ```
+    /Users/alice/projects/myapp/node_modules/@axionquant/mcp/index.js
+    ```
+  </Tab>
+
+  <Tab title="Windows">
+    **Configuration file:** `%APPDATA%\Claude\claude_desktop_config.json`
+
+    This typically expands to something like:
+
+    ```
+    C:\Users\Alice\AppData\Roaming\Claude\claude_desktop_config.json
+    ```
+
+    Open the file (create it if it doesn't exist) and add the `axion-financial-data` entry:
+
+    ```json claude_desktop_config.json
+    {
+      "mcpServers": {
+        "axion-financial-data": {
+          "command": "node",
+          "args": ["C:\\Users\\Alice\\projects\\myapp\\node_modules\\@axionquant\\mcp\\index.js"],
+          "env": {
+            "API_KEY": "your_api_key_here"
+          }
+        }
+      }
+    }
+    ```
+
+    Note that backslashes in JSON strings must be escaped as `\\`.
+  </Tab>
+</Tabs>
+
+After saving the file, **restart Claude Desktop** fully. The Axion tools will appear in the available tool list once the server starts successfully.
+
+## Other MCP clients
+
+Any MCP client that supports stdio transport can run the Axion server. The general pattern is:
+
+- **Command:** `node`
+- **Arguments:** the absolute path to `node_modules/@axionquant/mcp/index.js`
+- **Environment variable:** `API_KEY` set to your Axion API key
+
+Below is a generic stdio configuration you can adapt to your client's format:
+
+```json generic stdio config
+{
+  "command": "node",
+  "args": ["/absolute/path/to/node_modules/@axionquant/mcp/index.js"],
+  "transport": "stdio",
+  "env": {
+    "API_KEY": "your_api_key_here"
+  }
+}
+```
+
+Consult your client's documentation for the exact configuration schema. The server name is `axion-financial-data` (version `2.0.0`) and it exposes tools over the standard MCP tool protocol.
+
+<Note>
+  Always use an **absolute path** for the `args` entry. Relative paths are resolved against the client's working directory, which varies between clients and can cause the server to fail silently.
+</Note>

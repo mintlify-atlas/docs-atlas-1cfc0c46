@@ -1,0 +1,78 @@
+---
+title: Economics
+description: Search FRED economic datasets, retrieve time series data, and fetch scheduled economic calendar events.
+---
+
+<Note>
+All Axion MCP Server tools require a valid API key. Include your key in the server configuration before using any tool.
+</Note>
+
+The economics tools connect you to macroeconomic data and events. Dataset search and retrieval pull from the Federal Reserve Economic Data (FRED) database — a comprehensive repository of hundreds of thousands of economic time series maintained by the Federal Reserve Bank of St. Louis. The economic calendar tool provides scheduled data releases and events across countries and currencies, allowing you to track what is coming and when.
+
+---
+
+### `econ_search`
+
+Search the FRED database for economic datasets by keyword. Use this tool to discover what series are available before fetching the full time series with `econ_dataset`.
+
+<ParamField path="query" type="string" required>
+  A search term describing the economic concept you are looking for. For example, `corn prices` or `unemployment rate`.
+</ParamField>
+
+**Example query:** "Find economic datasets related to US inflation."
+
+---
+
+### `econ_dataset`
+
+Get the full time series for a specific FRED dataset by its series ID. Returns historical values over time, which you can use for trend analysis, charting, or macroeconomic research.
+
+<ParamField path="id" type="string" required>
+  The FRED series ID for the dataset. For example, `PMAIZMTUSDM` for corn prices or `CPIAUCSL` for the Consumer Price Index.
+</ParamField>
+
+**Example query:** "Show me the historical data for the US Consumer Price Index."
+
+---
+
+### `econ_calendar`
+
+Get scheduled economic calendar events such as central bank decisions, inflation releases, employment reports, and GDP announcements. You can filter events by date range, country, currency, importance, and category.
+
+The `minImportance` parameter uses the following scale:
+
+| Value | Level |
+|-------|-------|
+| `-1` | All events |
+| `0` | Low importance |
+| `1` | Medium importance |
+| `2` | High importance |
+| `3` | Critical importance |
+
+Common `category` values include `gov` (government) and `infl` (inflation).
+
+<ParamField query="from" type="string">
+  Start date for the calendar range in `YYYY-MM-DD` format. For example, `2025-01-01`.
+</ParamField>
+
+<ParamField query="to" type="string">
+  End date for the calendar range in `YYYY-MM-DD` format. For example, `2025-01-31`.
+</ParamField>
+
+<ParamField query="country" type="string">
+  Filter by one or more country codes, comma-separated. For example, `US` or `US,DE,JP`.
+</ParamField>
+
+<ParamField query="minImportance" type="integer">
+  Minimum importance threshold. Accepts `-1` (all), `0` (low), `1` (medium), `2` (high), or `3` (critical). Defaults to returning all events.
+</ParamField>
+
+<ParamField query="currency" type="string">
+  Filter by one or more currency codes, comma-separated. For example, `USD` or `USD,EUR`.
+</ParamField>
+
+<ParamField query="category" type="string">
+  Filter by event category. For example, `gov` for government events or `infl` for inflation-related releases.
+</ParamField>
+
+**Example query:** "What high-importance economic events are scheduled in the US next week?"

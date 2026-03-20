@@ -1,0 +1,64 @@
+---
+title: Earnings
+description: Access earnings history, trend data, index comparisons, and individual quarterly reports for any publicly traded company.
+---
+
+<Note>
+All Axion MCP Server tools require a valid API key. Include your key in the server configuration before using any tool.
+</Note>
+
+The earnings tools let you retrieve and analyze earnings data for public companies. You can look up a company's full earnings history, track how estimates and actuals have trended over time, compare performance against an index, or pull a detailed report for a specific year and quarter.
+
+### `earnings_history`
+
+Get earnings history for a ticker. Returns a record of past earnings announcements including reported EPS, estimated EPS, and surprise figures across multiple periods.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `AAPL` for Apple Inc.
+</ParamField>
+
+**Example query:** "Show me Apple's full earnings history."
+
+---
+
+### `earnings_trend`
+
+Get earnings trend for a ticker. Returns analyst estimate revisions and consensus EPS projections across multiple forward periods, giving you a picture of how expectations are shifting over time.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `MSFT` for Microsoft.
+</ParamField>
+
+**Example query:** "What is the current earnings trend for Microsoft?"
+
+---
+
+### `earnings_index`
+
+Get index trend for a ticker. Returns earnings data contextualized against a relevant index, letting you compare a company's earnings performance to the broader market or sector.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `NVDA` for NVIDIA.
+</ParamField>
+
+**Example query:** "How does NVDA's earnings performance compare against its index?"
+
+---
+
+### `earnings_report`
+
+Get the earnings report for a specific year and quarter. Returns detailed results for a single reporting period, including revenue, EPS, and other reported figures from that quarter's announcement.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `AAPL` for Apple Inc.
+</ParamField>
+
+<ParamField query="year" type="string" required>
+  The fiscal year of the report. For example, `2024`.
+</ParamField>
+
+<ParamField query="quarter" type="string" required>
+  The fiscal quarter of the report. For example, `Q1`, `Q2`, `Q3`, or `Q4`.
+</ParamField>
+
+**Example query:** "What were Apple's earnings results for Q3 2024?"

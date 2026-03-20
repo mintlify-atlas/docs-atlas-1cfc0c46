@@ -1,0 +1,80 @@
+---
+title: Insiders & ownership
+description: Access fund ownership, institutional holders, insider transactions, and net purchase activity for any publicly traded stock.
+---
+
+The insiders and ownership tools give you a full picture of who owns a stock and what they are doing with their position. You can query ownership by holder type — funds, individuals, or institutions — get a high-level breakdown of major holders, track net buying and selling trends, and drill into individual insider transactions.
+
+<Note>
+  All insiders and ownership tools require a valid Axion API key. Include it in your MCP server configuration before use.
+</Note>
+
+### insiders_funds
+
+Returns fund ownership data for a ticker, including mutual funds and ETFs that hold the stock.
+
+<ParamField path="ticker" type="string" required>
+  Stock ticker symbol, e.g. `AAPL`.
+</ParamField>
+
+**Example query:** "Which ETFs and mutual funds hold the most shares of NVDA?"
+
+---
+
+### insiders_individuals
+
+Returns named individual insider holders — typically executives, directors, and other officers — for a ticker.
+
+<ParamField path="ticker" type="string" required>
+  Stock ticker symbol, e.g. `TSLA`.
+</ParamField>
+
+**Example query:** "What insider transactions has Elon Musk made at Tesla?"
+
+---
+
+### insiders_institutions
+
+Returns institutional ownership data, including pension funds, hedge funds, and asset managers that hold a reportable position in the stock.
+
+<ParamField path="ticker" type="string" required>
+  Stock ticker symbol, e.g. `NVDA`.
+</ParamField>
+
+**Example query:** "Who are the top institutional holders of NVDA?"
+
+---
+
+### insiders_ownership
+
+Returns a major holders summary — a high-level breakdown of what percentage of shares outstanding is held by insiders, institutions, and the public float.
+
+<ParamField path="ticker" type="string" required>
+  Stock ticker symbol, e.g. `MSFT`.
+</ParamField>
+
+**Example query:** "What percentage of MSFT is held by insiders versus institutions?"
+
+---
+
+### insiders_activity
+
+Returns net share purchase activity, showing aggregate buying and selling trends over recent reporting periods. Use this to spot unusual accumulation or distribution before looking at individual transactions.
+
+<ParamField path="ticker" type="string" required>
+  Stock ticker symbol, e.g. `AAPL`.
+</ParamField>
+
+**Example query:** "Is there unusual insider buying activity at AAPL?"
+
+---
+
+### insiders_transactions
+
+Returns individual insider buy and sell transactions, including the reporting person, transaction date, share count, and price.
+
+<ParamField path="ticker" type="string" required>
+  Stock ticker symbol, e.g. `AMZN`.
+</ParamField>
+
+**Example query:** "Show me the most recent insider sell transactions at Amazon."

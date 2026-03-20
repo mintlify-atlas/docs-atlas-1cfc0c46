@@ -1,0 +1,234 @@
+---
+title: Financials
+description: Retrieve historical income statement, balance sheet, cash flow, and shares data for any publicly traded company, plus calculated metrics and snapshot summaries.
+---
+
+<Note>
+All Axion MCP Server tools require a valid API key. Include your key in the server configuration before using any tool.
+</Note>
+
+The financials tools give you access to structured fundamental data for public companies. You can pull individual line items — revenue, net income, cash flow, and more — across multiple historical periods, or use the summary tools to get calculated metrics and a high-level snapshot in a single call. All time-series tools accept an optional `periods` parameter that controls how many historical quarters to return.
+
+## Income statement
+
+### `financials_revenue`
+
+Get historical revenue for a ticker.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `AAPL` for Apple Inc.
+</ParamField>
+
+<ParamField query="periods" type="integer">
+  Number of historical periods (quarters) to return. Omit to use the default.
+</ParamField>
+
+**Example query:** "Show me Apple's revenue over the last 8 quarters."
+
+---
+
+### `financials_net_income`
+
+Get historical net income for a ticker.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `MSFT` for Microsoft.
+</ParamField>
+
+<ParamField query="periods" type="integer">
+  Number of historical periods (quarters) to return. Omit to use the default.
+</ParamField>
+
+**Example query:** "What has NVDA's net income been over the past four quarters?"
+
+---
+
+## Balance sheet
+
+### `financials_total_assets`
+
+Get historical total assets for a ticker.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `AAPL` for Apple Inc.
+</ParamField>
+
+<ParamField query="periods" type="integer">
+  Number of historical periods (quarters) to return. Omit to use the default.
+</ParamField>
+
+**Example query:** "How have Apple's total assets changed over the last two years?"
+
+---
+
+### `financials_total_liabilities`
+
+Get historical total liabilities for a ticker.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `MSFT` for Microsoft.
+</ParamField>
+
+<ParamField query="periods" type="integer">
+  Number of historical periods (quarters) to return. Omit to use the default.
+</ParamField>
+
+**Example query:** "What are Microsoft's total liabilities for the last six quarters?"
+
+---
+
+### `financials_stockholders_equity`
+
+Get historical stockholders equity for a ticker.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `NVDA` for NVIDIA.
+</ParamField>
+
+<ParamField query="periods" type="integer">
+  Number of historical periods (quarters) to return. Omit to use the default.
+</ParamField>
+
+**Example query:** "Show me NVDA's stockholders equity over the past eight quarters."
+
+---
+
+### `financials_current_assets`
+
+Get historical current assets for a ticker.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `AAPL` for Apple Inc.
+</ParamField>
+
+<ParamField query="periods" type="integer">
+  Number of historical periods (quarters) to return. Omit to use the default.
+</ParamField>
+
+**Example query:** "What are Apple's current assets for the most recent four periods?"
+
+---
+
+### `financials_current_liabilities`
+
+Get historical current liabilities for a ticker.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `MSFT` for Microsoft.
+</ParamField>
+
+<ParamField query="periods" type="integer">
+  Number of historical periods (quarters) to return. Omit to use the default.
+</ParamField>
+
+**Example query:** "How have Microsoft's current liabilities trended over the last year?"
+
+---
+
+## Cash flow
+
+### `financials_operating_cash_flow`
+
+Get historical operating cash flow for a ticker.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `AAPL` for Apple Inc.
+</ParamField>
+
+<ParamField query="periods" type="integer">
+  Number of historical periods (quarters) to return. Omit to use the default.
+</ParamField>
+
+**Example query:** "What is Apple's operating cash flow for the last eight quarters?"
+
+---
+
+### `financials_capital_expenditures`
+
+Get historical capital expenditures for a ticker.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `NVDA` for NVIDIA.
+</ParamField>
+
+<ParamField query="periods" type="integer">
+  Number of historical periods (quarters) to return. Omit to use the default.
+</ParamField>
+
+**Example query:** "How much has NVDA spent on capital expenditures over the past two years?"
+
+---
+
+### `financials_free_cash_flow`
+
+Get historical free cash flow for a ticker.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `MSFT` for Microsoft.
+</ParamField>
+
+<ParamField query="periods" type="integer">
+  Number of historical periods (quarters) to return. Omit to use the default.
+</ParamField>
+
+**Example query:** "Show me Microsoft's free cash flow trend over the last six quarters."
+
+---
+
+## Shares
+
+### `financials_shares_outstanding_basic`
+
+Get historical basic shares outstanding for a ticker.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `AAPL` for Apple Inc.
+</ParamField>
+
+<ParamField query="periods" type="integer">
+  Number of historical periods (quarters) to return. Omit to use the default.
+</ParamField>
+
+**Example query:** "How has Apple's basic share count changed over the last four years?"
+
+---
+
+### `financials_shares_outstanding_diluted`
+
+Get historical diluted shares outstanding for a ticker.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `NVDA` for NVIDIA.
+</ParamField>
+
+<ParamField query="periods" type="integer">
+  Number of historical periods (quarters) to return. Omit to use the default.
+</ParamField>
+
+**Example query:** "What is NVDA's diluted share count for the last eight quarters?"
+
+---
+
+## Summary
+
+### `financials_metrics`
+
+Get calculated financial metrics for a ticker. This tool returns derived ratios and performance indicators computed from the underlying financial statements, such as margins, return on equity, and growth rates.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `MSFT` for Microsoft.
+</ParamField>
+
+**Example query:** "What are the key financial metrics for Microsoft?"
+
+---
+
+### `financials_snapshot`
+
+Get a snapshot of key financial data for a ticker. This tool returns a condensed view of the most important income statement, balance sheet, and cash flow figures in a single response — useful when you need a quick overview without fetching individual line items.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `AAPL` for Apple Inc.
+</ParamField>
+
+**Example query:** "Give me a financial snapshot for Apple."

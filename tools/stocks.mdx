@@ -1,0 +1,66 @@
+---
+title: Stocks
+description: Look up stock tickers, retrieve real-time quotes, and fetch historical price data for equities listed on exchanges worldwide.
+---
+
+<Note>
+All Axion MCP Server tools require a valid API key. Include your key in the server configuration before using any tool.
+</Note>
+
+The stocks tools let you search for equity tickers, get current market data for any listed stock, and retrieve historical OHLCV price series. Use these tools when you need to answer questions about individual companies, compare performance over time, or build analysis workflows around public equity markets.
+
+### `stocks_tickers`
+
+List all available stock tickers, optionally filtered by country or exchange. Use this tool when you need to discover what symbols are available before requesting quotes or historical data.
+
+<ParamField query="country" type="string">
+  Filter results to a specific country. For example, `america` returns only US-listed equities.
+</ParamField>
+
+<ParamField query="exchange" type="string">
+  Filter results to a specific exchange. For example, `NASDAQ` returns only NASDAQ-listed tickers.
+</ParamField>
+
+**Example query:** "What stock tickers are available on the NASDAQ?"
+
+**When to use:** Run this tool first when you need to confirm the correct ticker symbol before fetching a quote or price history.
+
+---
+
+### `stocks_quote`
+
+Get the current market details for a stock ticker, including price, volume, and other real-time or delayed fields.
+
+<ParamField path="ticker" type="string" required>
+  The stock ticker symbol to look up. For example, `AAPL` for Apple Inc.
+</ParamField>
+
+**Example query:** "What is the current price of TSLA?"
+
+**When to use:** Use this tool whenever you need a snapshot of a stock's current market state — price, change, market cap, or similar fields.
+
+---
+
+### `stocks_prices`
+
+Retrieve historical price data for a stock over a date range and time frame. Returns OHLCV (open, high, low, close, volume) series.
+
+<ParamField path="ticker" type="string" required>
+  The stock ticker symbol. For example, `MSFT` for Microsoft.
+</ParamField>
+
+<ParamField query="from" type="string">
+  Start date for the price series in `YYYY-MM-DD` format. For example, `2024-01-01`.
+</ParamField>
+
+<ParamField query="to" type="string">
+  End date for the price series in `YYYY-MM-DD` format. For example, `2024-12-31`.
+</ParamField>
+
+<ParamField query="frame" type="string">
+  Time frame for each data point. Common values: `1d` (daily), `1wk` (weekly), `1mo` (monthly).
+</ParamField>
+
+**Example query:** "Show me AAPL's weekly closing prices from January to June 2024."
+
+**When to use:** Use this tool for trend analysis, charting, backtesting, or any task that requires a time series of price data for a specific equity.

@@ -1,0 +1,60 @@
+---
+title: API key
+description: How to obtain, configure, and secure your Axion API key.
+---
+
+The Axion MCP Server authenticates every request to the Axion API using an API key. You pass the key as an environment variable, and the server attaches it to each outbound request automatically.
+
+## Get an API key
+
+Go to the [API keys dashboard](https://axionquant.com/dashboard/api-keys) and create a new key. Give it a descriptive name so you can identify it later (for example, `claude-desktop-local`).
+
+A **free tier** is available with no credit card required. Free tier keys have rate limits; see the dashboard for details on your plan.
+
+## Set the environment variable
+
+The server reads your key from the `API_KEY` environment variable. You set this variable inside your MCP client's configuration — not in your shell profile — so the server process receives it at startup.
+
+```json claude_desktop_config.json
+{
+  "mcpServers": {
+    "axion-financial-data": {
+      "command": "node",
+      "args": ["/absolute/path/to/node_modules/@axionquant/mcp/index.js"],
+      "env": {
+        "API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+## How the key is used
+
+The server appends your key to every HTTP request it makes to `https://api.axionquant.com/` using a Bearer token header:
+
+```
+Authorization: Bearer <API_KEY>
+```
+
+You never need to construct this header yourself. If `API_KEY` is missing or empty, requests will fail with a `401 Unauthorized` response.
+
+## Security best practices
+
+<Warning>
+  Never commit your API key to source control. If you accidentally expose a key in a public repository, rotate it immediately from the [API keys dashboard](https://axionquant.com/dashboard/api-keys).
+</Warning>
+
+- Store the key only in your MCP client configuration file, which lives outside your project repository.
+- Do not hard-code the key in scripts, `.env` files that get committed, or any file tracked by git.
+- Use a separate key for each environment or client so you can revoke individual keys without disrupting other integrations.
+
+## Rotate a key
+
+If you believe a key has been compromised, or you want to rotate it as a routine security measure:
+
+1. Go to the [API keys dashboard](https://axionquant.com/dashboard/api-keys).
+2. Create a new key.
+3. Update the `API_KEY` value in your MCP client configuration.
+4. Restart the MCP client so the server picks up the new key.
+5. Delete the old key from the dashboard.

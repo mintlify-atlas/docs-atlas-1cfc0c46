@@ -1,0 +1,62 @@
+---
+title: Futures
+description: Browse futures contracts by exchange, retrieve current contract details, and access historical price data.
+---
+
+<Note>
+All Axion MCP Server tools require a valid API key. Include your key in the server configuration before using any tool.
+</Note>
+
+The futures tools let you explore futures contracts traded on exchanges like CME and COMEX, retrieve real-time or delayed contract quotes, and pull historical OHLCV price data. These tools are useful for commodity research, interest rate analysis, and derivatives market workflows.
+
+### `futures_tickers`
+
+List available futures tickers, optionally filtered by exchange. Use this tool to find the correct contract symbol before querying quotes or historical data.
+
+<ParamField query="exchange" type="string">
+  Filter by exchange. For example, `CME` for Chicago Mercantile Exchange contracts or `CMX` for COMEX contracts.
+</ParamField>
+
+**Example query:** "What futures contracts are available on the CME?"
+
+**When to use:** Run this tool when you need to discover available contracts on a specific exchange before looking up quotes or price history.
+
+---
+
+### `futures_quote`
+
+Get current details for a futures contract, including price, open interest, and related market fields.
+
+<ParamField path="ticker" type="string" required>
+  The futures contract ticker symbol. For example, `ALI` for Aluminum futures or `M6A` for Australian Dollar Micro futures.
+</ParamField>
+
+**Example query:** "What is the current price of ALI futures?"
+
+**When to use:** Use this tool when you need a current snapshot of a futures contract — for position monitoring, trade research, or market condition checks.
+
+---
+
+### `futures_prices`
+
+Retrieve historical price data for a futures contract over a specified date range and time frame.
+
+<ParamField path="ticker" type="string" required>
+  The futures contract ticker symbol. For example, `M6A` for Australian Dollar Micro futures.
+</ParamField>
+
+<ParamField query="from" type="string">
+  Start date for the price series in `YYYY-MM-DD` format. For example, `2024-01-01`.
+</ParamField>
+
+<ParamField query="to" type="string">
+  End date for the price series in `YYYY-MM-DD` format. For example, `2024-12-31`.
+</ParamField>
+
+<ParamField query="frame" type="string">
+  Time frame for each data point. Common values: `1d` (daily), `1wk` (weekly), `1mo` (monthly).
+</ParamField>
+
+**Example query:** "Show me daily prices for ALI futures over the past year."
+
+**When to use:** Use this tool when you need a historical series for a futures contract to analyze trends, seasonality, or price movements over time.

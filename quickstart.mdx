@@ -1,80 +1,93 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: Quickstart
+description: Get up and running with the Axion MCP Server in five minutes.
 ---
 
-## Get started in three steps
+This guide walks you through installing the Axion MCP Server and connecting it to Claude Desktop so you can query live financial data using natural language.
 
-Get your documentation site running locally and make your first customization.
+<Steps>
+  <Step title="Get an API key">
+    Sign in to your Axion account and generate an API key from the [API keys dashboard](https://axionquant.com/dashboard/api-keys).
 
-### Step 1: Set up your local environment
+    If you don't have an account yet, you can sign up for free — a free tier is available with no credit card required.
+  </Step>
 
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+  <Step title="Install the package">
+    Install `@axionquant/mcp` from npm. You need Node.js v18 or later.
 
-### Step 2: Deploy your changes
+    <CodeGroup>
 
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
+    ```bash npm
+    npm install @axionquant/mcp
+    ```
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+    ```bash npx (no install)
+    npx @axionquant/mcp
+    ```
 
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
+    </CodeGroup>
+  </Step>
 
-### Step 3: Go live
+  <Step title="Find the installed path">
+    After installing, note the absolute path to `index.js` inside the package. It is typically:
 
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
+    ```
+    /absolute/path/to/node_modules/@axionquant/mcp/index.js
+    ```
 
-## Next steps
+    For example, if your project lives at `/Users/alice/projects/myapp`, the path would be:
 
-Now that you have your docs running, explore these key features:
+    ```
+    /Users/alice/projects/myapp/node_modules/@axionquant/mcp/index.js
+    ```
 
-<CardGroup cols={2}>
+    <Note>
+      Claude Desktop requires an **absolute path** in the `args` field. Relative paths like `./node_modules/...` will not work.
+    </Note>
+  </Step>
 
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
+  <Step title="Configure Claude Desktop">
+    Open the Claude Desktop configuration file and add the Axion server entry.
 
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
+    | Platform | Configuration file path |
+    |---|---|
+    | macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
+    | Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
 
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
+    Add the following to your `mcpServers` object, replacing the path and API key with your own values:
 
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
+    ```json claude_desktop_config.json
+    {
+      "mcpServers": {
+        "axion-financial-data": {
+          "command": "node",
+          "args": ["/absolute/path/to/node_modules/@axionquant/mcp/index.js"],
+          "env": {
+            "API_KEY": "your_api_key_here"
+          }
+        }
+      }
+    }
+    ```
+  </Step>
 
-</CardGroup>
+  <Step title="Restart Claude Desktop">
+    Save the configuration file and restart Claude Desktop completely. The Axion tools will appear in the tool list once the server connects successfully.
+  </Step>
 
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>
+  <Step title="Test with a sample query">
+    Open a new conversation in Claude Desktop and ask a financial question to verify everything is working.
+
+    <Tip>
+      Start with a simple stock price query before trying more complex requests. This makes it easy to confirm the connection is working.
+    </Tip>
+
+    Example queries to try:
+
+    - "What is AAPL's current stock price?"
+    - "Show me the latest news for Tesla."
+    - "What is Bitcoin's price right now?"
+
+    If Claude returns live data, your setup is complete.
+  </Step>
+</Steps>

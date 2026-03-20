@@ -1,0 +1,80 @@
+---
+title: Profiles
+description: Retrieve company profiles, analyst recommendations, key statistics, calendar events, and summary information for any publicly traded asset.
+---
+
+<Note>
+All Axion MCP Server tools require a valid API key. Include your key in the server configuration before using any tool.
+</Note>
+
+The profiles tools give you structured information about a company beyond its raw financials. You can pull the full asset profile, analyst recommendation trends, key statistics, dividend and earnings calendar events, and a concise company summary. Use these tools when you need context about a business, its analyst sentiment, or upcoming events.
+
+### `profiles_profile`
+
+Get the full asset profile for a ticker. Returns detailed company information including business description, sector, industry, employee count, and contact details.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `AAPL` for Apple Inc.
+</ParamField>
+
+**Example query:** "Give me the full company profile for Apple."
+
+---
+
+### `profiles_recommendation`
+
+Get the recommendation trend for a ticker. Returns a breakdown of analyst ratings — such as strong buy, buy, hold, sell, and strong sell — aggregated across recent periods so you can track how sentiment is shifting.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `MSFT` for Microsoft.
+</ParamField>
+
+**Example query:** "What do analysts currently recommend for Microsoft?"
+
+---
+
+### `profiles_statistics`
+
+Get key statistics for a ticker. Returns valuation measures, financial highlights, and trading statistics such as market cap, P/E ratio, EPS, beta, and short interest.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `NVDA` for NVIDIA.
+</ParamField>
+
+**Example query:** "What are the key statistics for NVDA?"
+
+---
+
+### `profiles_summary`
+
+Get summary detail for a ticker. Returns a concise set of market and valuation data including price targets, dividend yield, and trading ranges — useful for a quick overview of a company's market standing.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `AAPL` for Apple Inc.
+</ParamField>
+
+**Example query:** "Give me a summary of Apple's current market data."
+
+---
+
+### `profiles_calendar`
+
+Get calendar events for a ticker. Returns upcoming and recent scheduled events for the company, including earnings announcement dates and dividend payment dates.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `MSFT` for Microsoft.
+</ParamField>
+
+**Example query:** "When is Microsoft's next earnings date?"
+
+---
+
+### `profiles_info`
+
+Get company info and summary profile for a ticker. Returns a lightweight company overview including name, sector, industry, and a brief business description — suitable when you need identifying information without the full profile payload.
+
+<ParamField path="ticker" type="string" required>
+  The ticker symbol of the company. For example, `NVDA` for NVIDIA.
+</ParamField>
+
+**Example query:** "What industry is NVDA in, and what does the company do?"
