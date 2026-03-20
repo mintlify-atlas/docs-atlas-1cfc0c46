@@ -1,0 +1,101 @@
+{
+  "projectType": "cli-tool",
+  "projectName": "Axion MCP Server",
+  "projectDescription": "A Model Context Protocol (MCP) server that gives LLMs access to the Axion financial data API, covering stocks, crypto, forex, futures, indices, ETFs, economics, news, sentiment, filings, financials, and more.",
+  "theme": "sequoia",
+  "primaryColor": "#848c8e",
+  "lightColor": "#11161e",
+  "darkColor": "#cfd0d2",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": ["introduction", "quickstart"]
+          },
+          {
+            "group": "Configuration",
+            "pages": ["configuration/api-key", "configuration/clients"]
+          },
+          {
+            "group": "Guides",
+            "pages": ["guides/example-queries", "guides/troubleshooting"]
+          }
+        ]
+      },
+      {
+        "tab": "Tool Reference",
+        "groups": [
+          {
+            "group": "Market Data",
+            "pages": [
+              "tools/stocks",
+              "tools/crypto",
+              "tools/forex",
+              "tools/futures",
+              "tools/indices",
+              "tools/etfs"
+            ]
+          },
+          {
+            "group": "Fundamentals",
+            "pages": [
+              "tools/financials",
+              "tools/earnings",
+              "tools/profiles"
+            ]
+          },
+          {
+            "group": "Research",
+            "pages": [
+              "tools/news",
+              "tools/sentiment",
+              "tools/economics",
+              "tools/filings"
+            ]
+          },
+          {
+            "group": "Ownership & ESG",
+            "pages": [
+              "tools/insiders",
+              "tools/esg",
+              "tools/supply-chain",
+              "tools/credit",
+              "tools/webtraffic"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "60+ MCP tools covering stocks, crypto, forex, futures, indices, and ETFs",
+    "Fundamental data including financials, earnings, profiles, and SEC filings",
+    "Market intelligence via news, sentiment, economics (FRED), and ESG scores",
+    "Ownership data including institutional holders, insider transactions, and supply chain",
+    "Compatible with Claude Desktop and any MCP-compliant LLM client",
+    "Simple stdio transport requiring only an API key environment variable"
+  ],
+  "publicApiSurface": [
+    "stocks_tickers", "stocks_quote", "stocks_prices",
+    "crypto_tickers", "crypto_quote", "crypto_prices",
+    "forex_tickers", "forex_quote", "forex_prices",
+    "futures_tickers", "futures_quote", "futures_prices",
+    "indices_tickers", "indices_quote", "indices_prices",
+    "etf_fund", "etf_holdings", "etf_exposure",
+    "financials_revenue", "financials_net_income", "financials_metrics", "financials_snapshot",
+    "earnings_history", "earnings_trend", "earnings_report",
+    "profiles_profile", "profiles_recommendation", "profiles_statistics",
+    "news_general", "news_ticker", "news_country", "news_category",
+    "sentiment_all", "sentiment_social", "sentiment_news", "sentiment_analyst",
+    "econ_search", "econ_dataset", "econ_calendar",
+    "filings_recent", "filings_forms", "filings_search",
+    "insiders_funds", "insiders_individuals", "insiders_institutions", "insiders_transactions",
+    "esg_data",
+    "supply_chain_customers", "supply_chain_peers", "supply_chain_suppliers",
+    "credit_search", "credit_ratings",
+    "webtraffic_traffic"
+  ]
+}
